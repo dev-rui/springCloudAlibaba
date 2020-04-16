@@ -1,0 +1,81 @@
+dubbo:
+  scan:
+    base-packages: com.example.discoveryserver.server
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://192.168.36.129
+  cloud:
+    subscribed-services: api-gateway
+
+spring:
+  application:
+       name: discovery-server
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.36.129:8848
+      config:
+        server-addr: 192.168.36.129:8848
+        file-extension: yaml
+        prefix: discovery-server-example
+        group: DEV_GROUP
+
+  main:
+    allow-bean-definition-overriding: true
+
+# 配置rocketmq的nameserver地址
+    stream:
+     rocketmq:
+        binder:
+         name-server: 192.168.36.129:9876
+        bindings:
+         output:
+           destination: test-topic
+           content-type: application/json
+           producer:
+             transactional: true
+             # txProducerGroup
+             group: test-stream-rocketmq-transactional
+#         input1:
+#           consumer:
+#             orderly: true
+#         input2:
+#           consumer:
+#             orderly: false
+#             tags: tagStr
+      # 定义name为output的binding
+#     bindings:
+#       output:
+#         destination: test-topic
+#         content-type: application/json
+
+#       input1:
+#        destination: test-topic
+#        content-type: text/plain
+#        group: test-group1
+#       input2:
+#         destination: test-topic
+#         content-type: text/plain
+#         group: test-group2
+#         consumer:
+#           concurrency: 20
+
+
+
+server:
+  port: 8001
+    # 下面是配置undertow作为服务器的参数
+  undertow:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      io-threads: 4
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+      worker-threads: 20
+      # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+      # 每块buffer的空间大小,越小的空间被利用越充分
+      buffer-size: 1024
+      # 是否分配的直接内存
+      direct-buffers: true
+

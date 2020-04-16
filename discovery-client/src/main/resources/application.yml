@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: discovery-client
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.36.129:8848
+
+
+    sentinel:
+      transport:
+        dashboard: 192.168.36.129:8858
+
+    stream:
+      rocketmq:
+        binder:
+          name-server: 192.168.36.129:9876
+        bindings:
+          input1:
+            consumer:
+              orderly: false
+              tags: tagStr1
+          input2:
+            consumer:
+              orderly: false
+              tags: tagStr
+
+     # 定义name为input的binding
+      bindings:
+        input1:
+          destination: test-topic
+          content-type: application/json
+          group: test-group1
+        input2:
+          destination: test-topic
+          content-type: application/json
+          group: test-group2
+          consumer:
+            concurrency: 20
+
+server:
+  port: 8002
