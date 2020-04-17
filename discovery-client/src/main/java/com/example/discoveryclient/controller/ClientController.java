@@ -2,39 +2,37 @@ package com.example.discoveryclient.controller;
 
 
 
-import com.example.discoveryclient.server.Client;
+import com.example.discoveryapi.server.HelloService;
 import com.example.discoveryclient.retryer.TechlogRetryer;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.web.bind.annotation.*;
 
 @Log4j2
 @RestController
+@Api(tags = "客户端控制类")
 public class ClientController {
 
-    @Autowired
-    Client client;
-    //LoadBalancerClient loadBalancerClient;
+    @Reference(version = "1.0.0")
+    HelloService helloService;
 
-    @GetMapping("/test")
-    public String test() {
-       /*通过spring cloud common中的负载均衡接口选取服务提供节点实现接口调用
-
-        ServiceInstance serviceInstance = loadBalancerClient.choose("discovery-server");
-        String url = serviceInstance.getUri() + "/hello?name=" + "didi";
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(url, String.class);*/
-
-
-        String result = client.hello("didi");
+    @ApiOperation(value="测试", notes="测试")
+    @ApiImplicitParam(name = "name", value = "姓名", required = true, dataType = "String")
+    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    public String test(@RequestBody String  name) {
+        String result = helloService.hello(name);
         return "Return : " + result;
     }
 
+    @ApiOperation(value="检测重复请求", notes="测试")
+    @ApiImplicitParam(name = "test", value = "test", required = true, dataType = "String")
     @GetMapping("/call")
     @TechlogRetryer(retryThrowable = Exception.class,waitMsec = 3,maxAttempt = 3)
-    public String call() {
-        String  result = client.hello("test_method");
+    public String call(String test) {
+        String  result = helloService.hello(test);
         return "Return : " + result;
     }
 }

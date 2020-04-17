@@ -1,4 +1,4 @@
-package com.example.discoveryserver.controller;
+/*package com.example.discoveryserver.controller;
 
 
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-/*@RestController
+@RestController
 @RefreshScope
 public class ServerController {
 

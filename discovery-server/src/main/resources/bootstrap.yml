@@ -1,18 +1,25 @@
 dubbo:
+  # 接口扫描路径
   scan:
     base-packages: com.example.discoveryserver.server
   protocol:
-    name: dubbo
-    port: -1
+     name: dubbo
+    # -1 代表自动分配端口
+     port: -1
   registry:
+    # 服务注册地址，也就是 Nacos 的服务器地址
     address: spring-cloud://192.168.36.129
   cloud:
     subscribed-services: api-gateway
+  provider:
+    # 配置负载均衡策略（轮询）
+    loadbalance: roundrobin
 
 spring:
   application:
        name: discovery-server
-
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     nacos:
       discovery:
@@ -23,8 +30,6 @@ spring:
         prefix: discovery-server-example
         group: DEV_GROUP
 
-  main:
-    allow-bean-definition-overriding: true
 
 # 配置rocketmq的nameserver地址
     stream:
@@ -78,4 +83,14 @@ server:
       buffer-size: 1024
       # 是否分配的直接内存
       direct-buffers: true
+
+# 服务监控检查
+#management:
+#  endpoints:
+#    migrate-legacy-ids: true
+#  endpoint:
+#    dubborestmetadata:
+#      enabled: true
+#    health:
+#      enabled: true
 

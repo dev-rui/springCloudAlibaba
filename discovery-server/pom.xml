@@ -26,16 +26,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-           <exclusions>
-            <!--  排除掉 内置 Tomcat-->
-            <exclusion>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-tomcat</artifactId>
-            </exclusion>
-        </exclusions>
+            <exclusions>
+            <!--      排除掉 内置 Tomcat-->
+             <exclusion>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-tomcat</artifactId>
+             </exclusion>
+         </exclusions>
         </dependency>
 
-        <!-- 内置服务器使用 Undertow -->
+        <!-- 内置服务器使用 Undertow-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
@@ -50,10 +50,6 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <exclusions>
-                <exclusion>
-                    <artifactId>jsr305</artifactId>
-                    <groupId>com.google.code.findbugs</groupId>
-                </exclusion>
                 <exclusion>
                     <artifactId>guava</artifactId>
                     <groupId>com.google.guava</groupId>
@@ -80,6 +76,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <!-- Spring Boot dependencies
         <dependency>
             <groupId>org.springframework.boot</groupId>
