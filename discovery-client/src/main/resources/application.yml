@@ -1,6 +1,6 @@
 dubbo:
   registry:
-    address: spring-cloud://129.211.74.124
+    address: spring-cloud://192.168.36.129
   cloud:
     subscribed-services: discovery-server
   consumer:
@@ -16,14 +16,15 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 129.211.74.124:8848
+        server-addr: 192.168.36.129:8848
     sentinel:
+      eager: true
       transport:
-        dashboard: 129.211.74.124:8858
+        dashboard: 192.168.36.129:8858
     stream:
       rocketmq:
         binder:
-          name-server: 129.211.74.124:9876
+          name-server: 192.168.36.129:9876
         bindings:
           input1:
             consumer:
@@ -60,3 +61,12 @@ server:
     buffer-size: 1024
     # 是否分配的直接内存
     direct-buffers: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

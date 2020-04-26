@@ -1,5 +1,6 @@
 package com.example.discoveryclient;
 
+import com.example.discoveryclient.banner.MyBanner;
 import com.example.discoveryclient.server.MySink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,11 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 public class DiscoveryClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DiscoveryClientApplication.class, args);
+		SpringApplication springApplication=new SpringApplication(DiscoveryClientApplication.class);
+		// 自定义的banner
+		springApplication.setBanner(new MyBanner());
+		//启动springboot
+		springApplication.run(args);
 	}
 
 }

@@ -8,7 +8,7 @@ dubbo:
      port: -1
   registry:
     # 服务注册地址，也就是 Nacos 的服务器地址
-    address: spring-cloud://129.211.74.124
+    address: spring-cloud://192.168.36.129
   cloud:
     subscribed-services: api-gateway
   provider:
@@ -23,9 +23,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 129.211.74.124:8848
+        server-addr: 192.168.36.129:8848
       config:
-        server-addr: 129.211.74.124:8848
+        server-addr: 192.168.36.129:8848
         file-extension: yaml
         prefix: discovery-server-example
         group: DEV_GROUP
@@ -35,7 +35,7 @@ spring:
     stream:
      rocketmq:
         binder:
-         name-server: 129.211.74.124:9876
+         name-server: 192.168.36.129:9876
         bindings:
          output:
            destination: test-topic
@@ -85,12 +85,12 @@ server:
       direct-buffers: true
 
 # 服务监控检查
-#management:
-#  endpoints:
-#    migrate-legacy-ids: true
-#  endpoint:
-#    dubborestmetadata:
-#      enabled: true
-#    health:
-#      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
 
