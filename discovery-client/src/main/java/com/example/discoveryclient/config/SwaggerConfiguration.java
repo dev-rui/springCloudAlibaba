@@ -33,7 +33,6 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example.discoveryclient.controller"))
                 .paths(PathSelectors.any())
-
                 .build().securityContexts(Lists.newArrayList(securityContext(),securityContext1())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey(),apiKey1()));
     }
 

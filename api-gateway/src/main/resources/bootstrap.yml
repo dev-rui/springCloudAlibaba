@@ -45,34 +45,11 @@ management:
   endpoint:
     health:
       show-details: always
+
+#日志打印
 #logging:
 #  level:
-#    org.springframework:
-#          cloud.gateway: debug
-    # Spring Cloud Gateway 配置项，对应 GatewayProperties 类
-#    gateway:
-      # 路由配置项，对应 RouteDefinition 数组
-#      routes:
-        # 路由的编号
-#       - id: baidu
-         # 路由到的目标地址
-#         uri: https://www.baidu.com/
-         # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
-#         predicates:
-#           - Path=/baidu
-         # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
-#         filters:
-#            - StripPrefix=1
+#      reactor.netty: DEBUG
+#      org.springframework.cloud.gateway: TRACE
 
-#       - id: ReactiveCompositeDiscoveryClient_discovery-client
-#         uri: lb://discovery-client
-#         predicates:
-#           - Path= /discovery-client/**
-#         filters:
-#           - RewritePath=/discovery-client/(?<remaining>.*), /${remaining} # 将 /order-service 前缀剔除
-      # 与 Spring Cloud 注册中心的集成，对应 DiscoveryLocatorProperties 类
-#      discovery:
-#        locator:
-#          enabled: true # 是否开启，默认为 false 关闭
-#          url-expression: "'lb://' + serviceId" # 路由的目标地址的表达式，默认为 "'lb://' + serviceId"
 
