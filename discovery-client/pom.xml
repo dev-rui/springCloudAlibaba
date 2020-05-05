@@ -17,6 +17,12 @@
 
 
 	<dependencies>
+		<!-- common -->
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- API -->
 		<dependency>
 			<groupId>com.example</groupId>
@@ -54,12 +60,6 @@
 					<groupId>com.google.guava</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<!--<version>1.18.2</version>
-			<optional>true</optional>-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

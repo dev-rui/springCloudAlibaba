@@ -21,6 +21,8 @@
         <module>discovery-server</module>
         <module>discovery-client</module>
         <module>api-gateway</module>
+        <module>cas-server</module>
+        <module>common</module>
     </modules>
 
     <properties>

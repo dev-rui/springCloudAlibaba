@@ -18,6 +18,7 @@ public class DiscoveryServerApplication {
         springApplication.setBanner(new MyBanner());
         //启动springboot
         springApplication.run(args);
+
     }
 
 }

@@ -2,6 +2,8 @@ package com.example.discoveryclient.controller;
 
 
 
+import com.example.common.respose.Response;
+import com.example.common.respose.ResultCodeEnum;
 import com.example.discoveryapi.server.HelloService;
 import com.example.discoveryclient.retryer.TechlogRetryer;
 import io.swagger.annotations.Api;
@@ -22,17 +24,17 @@ public class ClientController {
     @ApiOperation(value="测试", notes="测试")
     @ApiImplicitParam(name = "name", value = "姓名", required = true, dataType = "String")
     @RequestMapping(value = "/test",method = RequestMethod.POST)
-    public String test(@RequestBody String  name) {
+    public Response test(@RequestBody String  name) {
         String result = helloService.hello(name);
-        return "Return : " + result;
+        return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }
 
     @ApiOperation(value="检测重复请求", notes="测试")
     @ApiImplicitParam(name = "test", value = "test", required = true, dataType = "String")
     @GetMapping("/call")
     @TechlogRetryer(retryThrowable = Exception.class,waitMsec = 3,maxAttempt = 3)
-    public String call(String test) {
+    public Response call(String test) {
         String  result = helloService.hello(test);
-        return "Return : " + result;
+        return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }
 }
