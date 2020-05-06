@@ -9,6 +9,8 @@ dubbo:
 
 
 spring:
+  profiles:
+    include: util
   application:
     name: discovery-client
   main:

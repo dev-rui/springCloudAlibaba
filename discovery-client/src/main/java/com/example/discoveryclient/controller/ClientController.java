@@ -26,6 +26,7 @@ public class ClientController {
     @RequestMapping(value = "/test",method = RequestMethod.POST)
     public Response test(@RequestBody String  name) {
         String result = helloService.hello(name);
+        log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
         return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }
 
@@ -35,6 +36,7 @@ public class ClientController {
     @TechlogRetryer(retryThrowable = Exception.class,waitMsec = 3,maxAttempt = 3)
     public Response call(String test) {
         String  result = helloService.hello(test);
+        log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
         return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }
 }
