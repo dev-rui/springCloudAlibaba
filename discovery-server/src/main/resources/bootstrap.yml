@@ -16,6 +16,8 @@ dubbo:
     loadbalance: roundrobin
 
 spring:
+  profiles:
+      include: util
   application:
        name: discovery-server
   main:

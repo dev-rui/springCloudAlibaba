@@ -1,6 +1,6 @@
 package com.example.discoveryserver;
 
-import com.example.discoveryserver.banner.MyBanner;
+import com.example.common.banner.MyBanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;

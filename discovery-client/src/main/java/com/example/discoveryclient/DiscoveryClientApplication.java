@@ -1,6 +1,6 @@
 package com.example.discoveryclient;
 
-import com.example.discoveryclient.banner.MyBanner;
+import com.example.common.banner.MyBanner;
 import com.example.discoveryclient.server.MySink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

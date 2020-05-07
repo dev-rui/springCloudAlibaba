@@ -1,4 +1,4 @@
-package com.example.apigateway.banner;
+package com.example.common.banner;
 
 import org.springframework.boot.Banner;
 import org.springframework.core.env.Environment;

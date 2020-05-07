@@ -3,6 +3,8 @@ server:
 
 
 spring:
+  profiles:
+    include: util
   application:
           name: api-gateway
 

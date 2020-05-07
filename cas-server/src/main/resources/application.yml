@@ -1,0 +1,35 @@
+server:
+  port: 8004
+
+
+spring:
+  profiles:
+    include: util
+  application:
+    name: cas-server
+
+  cloud:
+    # Nacos 作为注册中心的配置项
+    nacos:
+      discovery:
+        server-addr: 192.168.36.129:8848 # Nacos 服务器地址
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.36.130:3306/auth?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
