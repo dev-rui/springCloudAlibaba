@@ -8,6 +8,28 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.36.129:8848 # Nacos 服务器地址
+  mail:
+    host: smtp.163.com
+    username: 18655377896@163.com
+    password: 032502ds@
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  boot:
+    admin:
+       notify:
+         mail:
+            from: 18655377896@163.com
+            to: 839192075@qq.com
+  #安全认证
+#  security:
+#    user:
+#      name: admin
+#      password: admin
 
 # 应用服务web访问端口
 server:
@@ -25,6 +47,22 @@ server:
       direct-buffers: true
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 
-
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
+    redis:
+      enabled: false
+    mongo:
+      enabled: false
 
