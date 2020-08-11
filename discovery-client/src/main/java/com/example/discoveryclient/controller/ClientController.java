@@ -13,6 +13,9 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author rui
+ */
 @Log4j2
 @RestController
 @Api(tags = "客户端控制类")

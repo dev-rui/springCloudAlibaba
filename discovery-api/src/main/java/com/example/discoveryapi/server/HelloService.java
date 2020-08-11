@@ -1,5 +1,8 @@
 package com.example.discoveryapi.server;
 
+/**
+ * @author rui
+ */
 public interface HelloService {
 
 
