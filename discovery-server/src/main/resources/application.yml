@@ -1,23 +1,23 @@
-dubbo:
-  # 接口扫描路径
-  scan:
-    base-packages: com.example.discoveryserver.server
-  protocol:
-     name: dubbo
-    # -1 代表自动分配端口
-     port: -1
-  registry:
-    # 服务注册地址，也就是 Nacos 的服务器地址
-    address: spring-cloud://192.168.36.129
-  cloud:
-    subscribed-services: api-gateway
-  provider:
-    # 配置负载均衡策略（轮询）
-    loadbalance: roundrobin
+#dubbo:
+#  # 接口扫描路径
+#  scan:
+#    base-packages: com.example.discoveryserver.server
+#  protocol:
+#     name: dubbo
+#    # -1 代表自动分配端口
+#     port: -1
+#  registry:
+#    # 服务注册地址，也就是 Nacos 的服务器地址
+#    address: spring-cloud://129.211.74.124
+#  cloud:
+#    subscribed-services: api-gateway
+#  provider:
+#    # 配置负载均衡策略（轮询）
+#    loadbalance: roundrobin
 
 spring:
   profiles:
-      include: util
+      include: dbconfig
   application:
        name: discovery-server
   main:
@@ -25,27 +25,27 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.36.129:8848
-      config:
-        server-addr: 192.168.36.129:8848
-        file-extension: yaml
-        prefix: discovery-server-example
-        group: DEV_GROUP
+        server-addr: 129.211.74.124:8848
+#      config:
+#        server-addr: 129.211.74.124:8848
+#        file-extension: yaml
+#        prefix: discovery-server-example
+#        group: DEV_GROUP
 
 
 # 配置rocketmq的nameserver地址
-    stream:
-     rocketmq:
-        binder:
-         name-server: 192.168.36.129:9876
-        bindings:
-         output:
-           destination: test-topic
-           content-type: application/json
-           producer:
-             transactional: true
-             # txProducerGroup
-             group: test-stream-rocketmq-transactional
+#    stream:
+#     rocketmq:
+#        binder:
+#         name-server: 129.211.74.124:9876
+#        bindings:
+#         output:
+#           destination: test-topic
+#           content-type: application/json
+#           producer:
+#             transactional: true
+#             # txProducerGroup
+#             group: test-stream-rocketmq-transactional
 #         input1:
 #           consumer:
 #             orderly: true

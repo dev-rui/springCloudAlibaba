@@ -1,4 +1,5 @@
-/*package com.example.discoveryserver.controller;
+/*
+package com.example.discoveryserver.controller;
 
 
 
@@ -24,4 +25,5 @@ public class ServerController {
         return helloServiceImpl.hello(name);
     }
 
-}*/
+}
+*/

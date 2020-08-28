@@ -1,3 +1,4 @@
+/*
 package com.example.discoveryserver.rocketmq;
 
 import com.alibaba.fastjson.JSON;
@@ -21,7 +22,8 @@ public class Producer {
     private Source output;
 
 
-   /* @Override
+   */
+/* @Override
     public void run(String... args) throws Exception {
         Map<String, Object> headers = new HashMap<>();
         headers.put(MessageConst.PROPERTY_TAGS, "tagStr");
@@ -34,7 +36,8 @@ public class Producer {
 
                 //MessageBuilder.createMessage(msg, new MessageHeaders(headers));
         output.output().send(message);
-    }*/
+    }*//*
+
 
     public String pushmessage(String args) {
         Message message = MessageBuilder
@@ -49,3 +52,4 @@ public class Producer {
     }
 
 }
+*/

@@ -14,6 +14,15 @@
     <description>discovery-server</description>
     <packaging>jar</packaging>
 
+    <properties>
+        <mybatis.plus.version>3.2.0</mybatis.plus.version>
+        <mysql.version>5.1.47</mysql.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <hutool-all.version>5.0.6</hutool-all.version>
+        <HikariCP.version>2.7.9</HikariCP.version>
+        <sharding-sphere.version>4.0.1</sharding-sphere.version>
+    </properties>
+
     <dependencies>
         <!-- common -->
         <dependency>
@@ -22,11 +31,11 @@
             <version>${project.version}</version>
         </dependency>
         <!-- API -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.example</groupId>
             <artifactId>discovery-api</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -45,10 +54,10 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <!-- Dubbo Spring Cloud Starter -->
-        <dependency>
+       <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-dubbo</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- Spring Cloud Nacos Service Discovery -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -64,11 +73,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
             <exclusions>
@@ -77,13 +86,53 @@
                     <groupId>com.alibaba</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
             <version>${spring-cloud-admin.version}</version>
         </dependency>
-
+        <!--shardingSphere-jdbc-->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>${sharding-sphere.version}</version>
+        </dependency>
+        <!-- for spring namespace -->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-namespace</artifactId>
+            <version>${sharding-sphere.version}</version>
+        </dependency>
+        <!-- 通用Mapper启动器 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.version}</version>
+        </dependency>
+        <!-- mysql驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!--java工具包-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+        <!--数据库连接池-->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${HikariCP.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

@@ -1,4 +1,5 @@
-package com.example.discoveryserver.server;
+/*
+package com.example.discoveryserver.server.impl;
 
 import com.example.discoveryapi.server.HelloService;
 import com.example.discoveryserver.rocketmq.Producer;
@@ -17,7 +18,7 @@ import java.awt.*;
 @Log4j2
 @Service(version = "1.0.0")
 @RestController
-public class HelloServerImpl implements HelloService {
+public class HelloServiceImpl implements HelloService {
     @Value("${sunny:}")
     private  String sunny;
     @Autowired
@@ -31,3 +32,4 @@ public class HelloServerImpl implements HelloService {
         return "hello " + name+" sunny:"+sunny+"mqresult:"+messageResult;
     }
 }
+*/

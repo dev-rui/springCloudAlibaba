@@ -1,0 +1,70 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: master0,slave0,master1,slave1
+#主库1
+      master0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3301/db0?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: test
+        password: 123456
+#从库1
+      slave0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3302/db0?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: test
+        password: 123456
+#主库2
+      master1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3303/db0?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: test
+        password: 123456
+#从库2
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3304/db0?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: test
+        password: 123456
+
+
+#根据id分库
+    sharding:
+      default-database-strategy:
+        inline:
+          sharding-column: id
+          algorithm-expression: master$->{id % 2}
+#根据id分表
+      tables:
+        sys_user:
+          actual-data-nodes: master$->{0..1}.sys_user
+#          table-strategy:
+#            inline:
+#              sharding-column: id
+#              algorithm-expression: sys_user$->{id % 2}
+
+
+#读写分离
+      master-slave-rules:
+        master0:
+          master-data-source-name: master0
+          slave-data-source-names: slave0
+        master1:
+          master-data-source-name: master1
+          slave-data-source-names: slave1
+
+#    masterslave:
+#        load-balance-algorithm-type: round_robin
+#        name: ms
+#        master-data-source-name: master1
+#        slave-data-source-names:
+#          - slave1
+#打印sql
+    props:
+      sql.show: true
+  main:
+    allow-bean-definition-overriding: true
