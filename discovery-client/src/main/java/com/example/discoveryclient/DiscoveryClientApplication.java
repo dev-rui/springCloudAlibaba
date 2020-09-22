@@ -8,6 +8,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 
+/**
+ * @author rui
+ */
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableBinding({MySink.class})

@@ -1,4 +1,3 @@
-/*
 package com.example.discoveryserver.rocketmq;
 
 import lombok.extern.log4j.Log4j2;
@@ -12,10 +11,10 @@ import org.springframework.messaging.MessageHeaders;
 @Log4j2
 @RocketMQTransactionListener(txProducerGroup = "test-stream-rocketmq-transactional")
 public class TransactionalListener implements RocketMQLocalTransactionListener {
-    */
-/**
+
+    /**
      * 处理本地事务
-     *//*
+     */
 
     @Override
     public RocketMQLocalTransactionState executeLocalTransaction(Message message, Object arg) {
@@ -33,11 +32,11 @@ public class TransactionalListener implements RocketMQLocalTransactionListener {
         }
     }
 
-    */
-/**
+
+    /**
      * 若在本地事务执行过程中缺少二次确认消息或生产者处于等待状态
      * MQ Server将向同一组中的每个生产者发送检查消息
-     *//*
+     */
 
     @Override
     public RocketMQLocalTransactionState checkLocalTransaction(Message message) {
@@ -53,4 +52,3 @@ public class TransactionalListener implements RocketMQLocalTransactionListener {
         }
     }
 }
-*/

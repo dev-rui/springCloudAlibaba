@@ -6,6 +6,7 @@ package com.example.discoveryapi.server;
 public interface HelloService {
 
 
-        String hello(String name);
+        String helloTCC(String name);
 
+        String helloAT(String name);
 }

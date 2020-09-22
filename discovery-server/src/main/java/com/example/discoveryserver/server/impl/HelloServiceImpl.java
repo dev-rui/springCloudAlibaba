@@ -1,35 +1,49 @@
-/*
 package com.example.discoveryserver.server.impl;
 
 import com.example.discoveryapi.server.HelloService;
-import com.example.discoveryserver.rocketmq.Producer;
+import com.example.discoveryserver.server.ProductService;
+import com.example.discoveryserver.server.UserService;
+import io.seata.core.context.RootContext;
 import lombok.extern.log4j.Log4j2;
-import org.apache.dubbo.config.annotation.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
+import javax.annotation.Resource;
 
+
+/**
+ * @author rui
+ */
 @Log4j2
-@Service(version = "1.0.0")
-@RestController
+@DubboService(version = "1.0.0")
 public class HelloServiceImpl implements HelloService {
-    @Value("${sunny:}")
+    /*@Value("${sunny:}")
     private  String sunny;
     @Autowired
-    private Producer producerRunner;
+    private Producer producerRunner;*/
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private ProductService productService;
 
     @Override
-    @RequestMapping(value = "/hello",method = RequestMethod.POST)
-    public String hello(@RequestBody String name) {
-        log.info("invoked name = " + name+" sunny:"+sunny);
+    public String helloTCC(String name) {
+        log.info("seataTCC第二阶段");
+        String result=productService.insert(name);
+        return result;
+    }
+
+    @Override
+    public String helloAT(@RequestBody String name) {
+      /*  log.info("invoked name = " + name+" sunny:"+sunny);
         String messageResult=producerRunner.pushmessage(name);
-        return "hello " + name+" sunny:"+sunny+"mqresult:"+messageResult;
+        return "hello " + name+" sunny:"+sunny+"mqresult:"+messageResult;*/
+        log.info("AT全局事务id ：" + RootContext.getXID());
+        log.info("seataAT第二阶段");
+       String result=userService.insert(name);
+        return result;
     }
 }
-*/
+

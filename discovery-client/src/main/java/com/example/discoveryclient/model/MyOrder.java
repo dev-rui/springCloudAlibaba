@@ -1,4 +1,4 @@
-package com.example.discoveryserver.model;
+package com.example.discoveryclient.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,28 +8,17 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
-/**
- * @author rui
- */
+
 @Data
-@TableName("sys_user")
+@TableName("my_order")
 @EqualsAndHashCode(callSuper=false)
-public class SysUser extends Model<SysUser> {
-    @TableId(value = "id",type= IdType.ID_WORKER)
+public class MyOrder extends Model<MyOrder> {
+    @TableId(value = "id",type= IdType.AUTO)
     private Long id;
 
     private String name;
 
-    private int sex;
-
     private Date createTime;
 
     private Date updateTime;
-
-    public SysUser(String name, int sex, Date createTime, Date updateTime) {
-        this.name=name;
-        this.sex=sex;
-        this.createTime=createTime;
-        this.updateTime=updateTime;
-    }
 }

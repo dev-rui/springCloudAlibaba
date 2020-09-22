@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface UserService extends IService<SysUser> {
     List<SysUser> getlist();
+
+    String insert(String name);
 }

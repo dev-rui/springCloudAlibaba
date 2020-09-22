@@ -1,4 +1,3 @@
-/*
 package com.example.discoveryserver.rocketmq;
 
 import com.alibaba.fastjson.JSON;
@@ -10,20 +9,18 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
-
 import java.util.UUID;
 
 @Service
 public class Producer {
-        // implements CommandLineRunner
+        //implements CommandLineRunner
     // 获取name为output的binding
-
     @Autowired
     private Source output;
 
 
-   */
-/* @Override
+
+  /*  @Override
     public void run(String... args) throws Exception {
         Map<String, Object> headers = new HashMap<>();
         headers.put(MessageConst.PROPERTY_TAGS, "tagStr");
@@ -34,9 +31,9 @@ public class Producer {
                 .setHeader("comment", JSON.toJSONString(forObject))
                 .build();
 
-                //MessageBuilder.createMessage(msg, new MessageHeaders(headers));
+        //MessageBuilder.createMessage(msg, new MessageHeaders(headers));
         output.output().send(message);
-    }*//*
+    }*/
 
 
     public String pushmessage(String args) {
@@ -52,4 +49,4 @@ public class Producer {
     }
 
 }
-*/
+

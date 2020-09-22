@@ -5,13 +5,17 @@ package com.example.discoveryclient.controller;
 import com.example.common.respose.Response;
 import com.example.common.respose.ResultCodeEnum;
 import com.example.discoveryapi.server.HelloService;
+import com.example.discoveryclient.model.MyOrder;
 import com.example.discoveryclient.retryer.TechlogRetryer;
+import com.example.discoveryclient.server.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+
 
 /**
  * @author rui
@@ -21,14 +25,32 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "客户端控制类")
 public class ClientController {
 
-    @Reference(version = "1.0.0")
+    @DubboReference(version = "1.0.0")
     HelloService helloService;
+    @Resource
+    private OrderService orderService;
 
-    @ApiOperation(value="测试", notes="测试")
-    @ApiImplicitParam(name = "name", value = "姓名", required = true, dataType = "String")
-    @RequestMapping(value = "/test",method = RequestMethod.POST)
-    public Response test(@RequestBody String  name) {
-        String result = helloService.hello(name);
+    @ApiOperation(value="测试AT", notes="测试")
+    @RequestMapping(value = "/testAt",method = RequestMethod.POST)
+    public Response testAt(@RequestBody MyOrder myOrder) {
+        String result=orderService.insertAT(myOrder);
+        log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
+        return Response.setResult(ResultCodeEnum.SUCCESS,result);
+    }
+
+
+    @ApiOperation(value="测试TCC", notes="测试")
+    @RequestMapping(value = "/testTcc",method = RequestMethod.POST)
+    public Response testTcc(@RequestBody MyOrder myOrder) {
+        String result=orderService.insertTCC(myOrder);
+        log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
+        return Response.setResult(ResultCodeEnum.SUCCESS,result);
+    }
+
+    @ApiOperation(value="查询订单", notes="查询")
+    @RequestMapping(value = "/select",method = RequestMethod.POST)
+    public Response select(@RequestBody MyOrder myOrder) {
+        MyOrder result=orderService.getById(myOrder.getId());
         log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
         return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }
@@ -38,7 +60,7 @@ public class ClientController {
     @GetMapping("/call")
     @TechlogRetryer(retryThrowable = Exception.class,waitMsec = 3,maxAttempt = 3)
     public Response call(String test) {
-        String  result = helloService.hello(test);
+        String  result = helloService.helloAT(test);
         log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
         return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }

@@ -1,4 +1,3 @@
-/*
 package com.example.discoveryclient.server;
 
 
@@ -13,4 +12,4 @@ public interface Client {
     String hello(@RequestParam(name = "name") String name);
 
 }
-*/
+

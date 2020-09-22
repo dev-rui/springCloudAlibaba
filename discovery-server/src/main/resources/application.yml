@@ -1,23 +1,29 @@
-#dubbo:
-#  # 接口扫描路径
-#  scan:
-#    base-packages: com.example.discoveryserver.server
-#  protocol:
-#     name: dubbo
-#    # -1 代表自动分配端口
-#     port: -1
-#  registry:
-#    # 服务注册地址，也就是 Nacos 的服务器地址
-#    address: spring-cloud://129.211.74.124
-#  cloud:
-#    subscribed-services: api-gateway
-#  provider:
-#    # 配置负载均衡策略（轮询）
-#    loadbalance: roundrobin
+dubbo:
+  # 接口扫描路径
+  scan:
+    base-packages: com.example.discoveryserver.server
+  protocol:
+     name: dubbo
+    # -1 代表自动分配端口
+     port: -1
+  registry:
+    # 服务注册地址，也就是 Nacos 的服务器地址
+    address: spring-cloud://127.0.0.1
+  cloud:
+    subscribed-services: api-gateway
+  provider:
+    # 配置负载均衡策略（轮询）
+    loadbalance: roundrobin
 
 spring:
-  profiles:
-      include: dbconfig
+#  profiles:
+#      include: dbconfig
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3303/db0?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+    username: test
+    password: 123456
   application:
        name: discovery-server
   main:
@@ -25,50 +31,28 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 129.211.74.124:8848
+        server-addr: 127.0.0.1:8848
 #      config:
-#        server-addr: 129.211.74.124:8848
+#        server-addr: 127.0.0.1:8848
 #        file-extension: yaml
 #        prefix: discovery-server-example
 #        group: DEV_GROUP
-
-
-# 配置rocketmq的nameserver地址
-#    stream:
-#     rocketmq:
-#        binder:
-#         name-server: 129.211.74.124:9876
-#        bindings:
-#         output:
-#           destination: test-topic
-#           content-type: application/json
-#           producer:
-#             transactional: true
-#             # txProducerGroup
-#             group: test-stream-rocketmq-transactional
-#         input1:
-#           consumer:
-#             orderly: true
-#         input2:
-#           consumer:
-#             orderly: false
-#             tags: tagStr
-      # 定义name为output的binding
-#     bindings:
-#       output:
-#         destination: test-topic
-#         content-type: application/json
-
-#       input1:
-#        destination: test-topic
-#        content-type: text/plain
-#        group: test-group1
-#       input2:
-#         destination: test-topic
-#         content-type: text/plain
-#         group: test-group2
-#         consumer:
-#           concurrency: 20
+    # 配置rocketmq的nameserver地址
+    stream:
+      rocketmq:
+        binder:
+          name-server: 129.211.74.124:9876
+        bindings:
+          output:
+            destination: test-topic
+            content-type: application/json
+            producer:
+              transactional: true
+              group: test-stream-rocketmq-transactional
+      bindings:
+        output:
+          destination: test-topic
+          contentType: application/json
 
 
 
@@ -96,3 +80,47 @@ management:
     health:
       show-details: always
 
+#seata设置
+seata:
+  enabled: true
+  application-id: discovery-server
+  tx-service-group: discovery-server-group
+  enable-auto-data-source-proxy: true
+  registry:
+    file:
+      name: file.conf
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace:
+      cluster: default
+  config:
+    file:
+      name: file.conf
+    type: nacos
+    nacos:
+      namespace:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+  use-jdk-proxy: true
+    #  config:
+    #    type: nacos
+    #    nacos:
+    #      namespace:
+    #      serverAddr: 127.0.0.1:8848
+    #      group: SEATA_GROUP
+    #      userName: "nacos"
+    #      password: "nacos"
+    #  registry:
+    #    type: nacos
+    #    nacos:
+    #      application: seata-server
+    #      server-addr: 127.0.0.1:8848
+    #      group: SEATA_GROUP
+    #      namespace:
+    #      userName: "nacos"
+    #      password: "nacos"
+#开启sql日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
