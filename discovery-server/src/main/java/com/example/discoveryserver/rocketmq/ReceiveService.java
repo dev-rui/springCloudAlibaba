@@ -1,4 +1,4 @@
-package com.example.discoveryclient.server.impl;
+package com.example.discoveryserver.rocketmq;
 
 import lombok.extern.log4j.Log4j2;
 

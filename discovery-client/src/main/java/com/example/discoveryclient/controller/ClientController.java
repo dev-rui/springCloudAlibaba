@@ -64,4 +64,13 @@ public class ClientController {
         log.info(Response.setResult(ResultCodeEnum.SUCCESS,result));
         return Response.setResult(ResultCodeEnum.SUCCESS,result);
     }
+
+
+    @ApiOperation(value="发送消息", notes="测试")
+    @RequestMapping(value = "/message",method = RequestMethod.POST)
+    public Response message(String message) {
+        String result=orderService.createMessage(message);
+        log.info("rocketMq消息结果："+result);
+        return Response.setResult(ResultCodeEnum.SUCCESS,result);
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.discoveryserver.server;
+package com.example.discoveryserver.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.discoveryserver.model.SysUser;

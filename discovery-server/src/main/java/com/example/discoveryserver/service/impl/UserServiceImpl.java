@@ -1,10 +1,10 @@
-package com.example.discoveryserver.server.impl;
+package com.example.discoveryserver.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.discoveryserver.mapper.UserMapper;
 import com.example.discoveryserver.model.SysUser;
-import com.example.discoveryserver.server.UserService;
+import com.example.discoveryserver.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

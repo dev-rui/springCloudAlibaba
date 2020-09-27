@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.example.common.respose.Response;
 import com.example.common.respose.ResultCodeEnum;
 import com.example.discoveryserver.model.SysUser;
-import com.example.discoveryserver.server.UserService;
+import com.example.discoveryserver.service.UserService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

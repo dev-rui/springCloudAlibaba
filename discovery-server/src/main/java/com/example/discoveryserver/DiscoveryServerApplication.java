@@ -1,18 +1,18 @@
 package com.example.discoveryserver;
 
 import com.example.common.banner.MyBanner;
+import com.example.discoveryserver.rocketmq.MySink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 
 /**
  * @author rui
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableBinding({Source.class})
+@EnableBinding({MySink.class})
 public class DiscoveryServerApplication {
 
     public static void main(String[] args) {

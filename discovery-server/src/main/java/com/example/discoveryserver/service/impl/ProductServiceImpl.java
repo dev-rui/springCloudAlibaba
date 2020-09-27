@@ -1,9 +1,9 @@
-package com.example.discoveryserver.server.impl;
+package com.example.discoveryserver.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.discoveryserver.mapper.ProductMapper;
 import com.example.discoveryserver.model.MyProduct;
-import com.example.discoveryserver.server.ProductService;
+import com.example.discoveryserver.service.ProductService;
 import io.seata.rm.tcc.api.BusinessActionContext;
 import lombok.extern.log4j.Log4j2;
 

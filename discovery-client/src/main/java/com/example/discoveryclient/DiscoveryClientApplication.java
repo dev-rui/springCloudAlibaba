@@ -1,11 +1,11 @@
 package com.example.discoveryclient;
 
 import com.example.common.banner.MyBanner;
-import com.example.discoveryclient.server.MySink;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
 
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableBinding({MySink.class})
+@EnableBinding({Source.class})
 public class DiscoveryClientApplication {
 
 	public static void main(String[] args) {

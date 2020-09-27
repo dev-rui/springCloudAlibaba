@@ -1,4 +1,4 @@
-package com.example.discoveryserver.rocketmq;
+package com.example.discoveryclient.rocketmq;
 
 import lombok.extern.log4j.Log4j2;
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;

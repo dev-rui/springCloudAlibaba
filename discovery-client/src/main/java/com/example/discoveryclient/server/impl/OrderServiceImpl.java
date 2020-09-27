@@ -4,14 +4,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.discoveryapi.server.HelloService;
 import com.example.discoveryclient.mapper.OrderMapper;
 import com.example.discoveryclient.model.MyOrder;
+import com.example.discoveryclient.rocketmq.Producer;
 import com.example.discoveryclient.server.OrderService;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.log4j.Log4j2;
 import org.apache.dubbo.config.annotation.DubboReference;
-/*import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
-import org.apache.shardingsphere.transaction.core.TransactionType;
-import org.springframework.beans.factory.annotation.Autowired;*/
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,10 +24,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, MyOrder> implemen
 
     @DubboReference(version = "1.0.0",timeout = 300000)
     HelloService helloService;
+    @Autowired
+    private Producer producer;
+
     boolean flag;
 
     @GlobalTransactional(timeoutMills = 300000, name = "dubbo-seata-example")
-    //@ShardingTransactionType(TransactionType.BASE)
     @Override
     public String insertAT(MyOrder myOrder) {
         log.info("开始全局事务，XID = " + RootContext.getXID());
@@ -57,6 +58,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, MyOrder> implemen
      /*   if (!flag) {
             throw new RuntimeException("测试抛异常后，分布式事务回滚！");
         }*/
+        return result;
+    }
+
+
+    @Override
+    public String createMessage(String message) {
+        String result=producer.pushmessage(message);
         return result;
     }
 }

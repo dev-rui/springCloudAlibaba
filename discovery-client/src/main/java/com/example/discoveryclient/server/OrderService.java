@@ -8,4 +8,6 @@ public interface OrderService extends IService<MyOrder> {
     String insertAT(MyOrder myOrder);
 
     String insertTCC(MyOrder myOrder);
+
+    String createMessage(String message);
 }

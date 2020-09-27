@@ -30,31 +30,23 @@ spring:
       eager: true
       transport:
         dashboard: 192.168.10.101:8858
+# 配置rocketmq的nameserver地址
     stream:
       rocketmq:
         binder:
           name-server: 129.211.74.124:9876
         bindings:
-          input1:
-            consumer:
-              orderly: false
-              tags: tagStr1
-          input2:
-            consumer:
-              orderly: false
-              tags: tagStr
-      # 定义name为input的binding
+          output:
+            destination: test-topic
+            content-type: application/json
+            producer:
+              transactional: true
+              group: test-stream-rocketmq-transactional
       bindings:
-        input1:
+        output:
           destination: test-topic
-          content-type: application/json
-          group: test-group1
-        input2:
-          destination: test-topic
-          content-type: application/json
-          group: test-group2
-          consumer:
-            concurrency: 20
+          contentType: application/json
+
 #seata设置
 seata:
   enabled: true

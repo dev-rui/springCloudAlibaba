@@ -1,4 +1,4 @@
-package com.example.discoveryserver.rocketmq;
+package com.example.discoveryclient.rocketmq;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.rocketmq.common.message.MessageConst;
@@ -13,27 +13,11 @@ import java.util.UUID;
 
 @Service
 public class Producer {
-        //implements CommandLineRunner
+
     // 获取name为output的binding
     @Autowired
-    private Source output;
+    private Source source;
 
-
-
-  /*  @Override
-    public void run(String... args) throws Exception {
-        Map<String, Object> headers = new HashMap<>();
-        headers.put(MessageConst.PROPERTY_TAGS, "tagStr");
-        String msg=new String("producer");
-        Message message = MessageBuilder
-                .withPayload()
-                .setHeader(RocketMQHeaders.TRANSACTION_ID, UUID.randomUUID().toString())
-                .setHeader("comment", JSON.toJSONString(forObject))
-                .build();
-
-        //MessageBuilder.createMessage(msg, new MessageHeaders(headers));
-        output.output().send(message);
-    }*/
 
 
     public String pushmessage(String args) {
@@ -43,8 +27,7 @@ public class Producer {
                 .setHeader(MessageConst.PROPERTY_TAGS,"tagStr")
                 .setHeader("comment", JSON.toJSONString(args))
                 .build();
-        //MessageBuilder.createMessage(msg, new MessageHeaders(headers));
-        output.output().send(message);
+        source.output().send(message);
         return "success";
     }
 
